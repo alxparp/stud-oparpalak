@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+                                     http://xmlns.jcp.org/xml/ns/persistence/orm_2_0.xsd" version="2.1">
+
+    <entity class="com.eisgroup.layered.entity.Bus" />
+    <entity class="com.eisgroup.layered.entity.Car" />
+    <entity class="com.eisgroup.layered.entity.Cargo" />
+    <entity class="com.eisgroup.layered.entity.Motorcycle" />
+    <entity class="com.eisgroup.layered.entity.Producer" />
+    <entity class="com.eisgroup.layered.entity.Salon" />
+    <entity class="com.eisgroup.layered.entity.Sensor" />
+    <entity class="com.eisgroup.layered.entity.Transport" />
+
+</entity-mappings>
