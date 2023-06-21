@@ -1,0 +1,178 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create_transport" author="parpalak">
+        <createTable tableName="transports">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="price" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="availability" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="producer_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="sensor_id" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_cargo" author="parpalak">
+        <createTable tableName="cargo">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="body_type" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_car" author="parpalak">
+        <createTable tableName="cars">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="mileage_km" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="engine_capacity" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_bus" author="parpalak">
+        <createTable tableName="buses">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="seats_number" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_moto" author="parpalak">
+        <createTable tableName="motorcycles">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="issue_year" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_salon" author="parpalak">
+        <createTable tableName="salons">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="transport_id" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_producer" author="parpalak">
+        <createTable tableName="producers">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_sensor" author="parpalak">
+        <createTable tableName="sensors">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            <column name="transport_id" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_sensor_transport" author="parpalak">
+        <createTable tableName="sensor_transport">
+            <column name="sensor_id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="transport_id" type="int">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-fk-transport-sensor" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_sensor"
+                                 baseTableName="sensor_transport" baseColumnNames="sensor_id" referencedTableName="sensors"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-sensor-transport" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_transport"
+                                 baseTableName="sensor_transport" baseColumnNames="transport_id" referencedTableName="transports"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-transport-producer" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_transport_producer"
+                                 baseTableName="transports" baseColumnNames="producer_id" referencedTableName="producers"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-salon-transport" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_salon_transport"
+                                 baseTableName="salons" baseColumnNames="transport_id" referencedTableName="transports"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-cargo-transport" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_cargo_transport"
+                                 baseTableName="cargo" baseColumnNames="id" referencedTableName="transports"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-car-transport" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_car_transport"
+                                 baseTableName="cars" baseColumnNames="id" referencedTableName="transports"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-transport-bus" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_bus_transport"
+                                 baseTableName="buses" baseColumnNames="id" referencedTableName="transports"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="add-fk-motorcycle-transport" author="parpalak">
+        <addForeignKeyConstraint constraintName="fk_transport_motorcycle"
+                                 baseTableName="motorcycles" baseColumnNames="id" referencedTableName="transports"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE" />
+    </changeSet>
+
+    <changeSet id="tag-1.0" author="parpalak">
+        <tagDatabase tag="1.0" />
+    </changeSet>
+
+</databaseChangeLog>

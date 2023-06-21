@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<h:body>
+
+    <h:outputStylesheet library="css" name="styles.css"  />
+
+    <div class="search">
+        <h:form styleClass="search_component">
+            <p:inputText  id="search_string" value="#{bookListController.searchString}" />
+            <p:commandButton value="Поиск" actionListener="#{bookListController.fillBooksBySearch}" update="@form"/>
+        </h:form>
+
+        <h:form styleClass="search_component">
+            <p:selectOneMenu value="#{bookListController.searchType}">
+                <f:selectItems value="${searchTypeController.searchList}" />
+            </p:selectOneMenu>
+        </h:form>
+
+        <h:form styleClass="availability_component">
+            <!--<h:outputLabel for="availability" value="Availability" />-->
+            <p:selectOneMenu id="availability" value="#{bookListController.availabilityType}">
+                <f:selectItems value="${bookListController.availabilityList}" />
+            </p:selectOneMenu>
+        </h:form>
+    </div>
+
+    <div class="addBook">
+        <h:form styleClass="add_component">
+            <p:commandButton value="Add book" action="edit" />
+        </h:form>
+    </div>
+
+    <div class="content">
+
+    <h:form id="booksForm" >
+
+        <p:dataTable var="car" value="#{bookListController.cars}" paginator="true"
+                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     rows="8" paginatorPosition="bottom" paginatorAlwaysVisible="false">
+            <p:column headerText="Id">
+                <h:outputText value="#{car.id}" />
+            </p:column>
+
+            <p:column headerText="Name">
+                <h:outputText value="#{car.name}" />
+            </p:column>
+
+            <p:column headerText="Price">
+                <h:outputText value="#{car.price}" />
+            </p:column>
+
+            <p:column headerText="Availability">
+                <h:outputText value="#{car.availability}" />
+            </p:column>
+
+            <p:column headerText="Action">
+                <p:panelGrid columns="2">
+                    <p:commandLink value="Открыть"/>
+                    <p:commandLink value="Редактировать"/>
+                </p:panelGrid>
+            </p:column>
+        </p:dataTable>
+
+    </h:form>
+    </div>
+</h:body>
+</html>

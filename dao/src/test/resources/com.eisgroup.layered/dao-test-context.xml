@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dayOfWeek" class="com.eisgroup.layered.impl.DayOfWeekEnglish" />
+
+    <bean id="adow" class="com.eisgroup.layered.impl.AbstractDayOfWeek" />
+
+    <bean id="date" class="java.util.Date" />
+
+    <bean id="calendar" class="java.util.GregorianCalendar">
+        <constructor-arg value="2018" />
+        <constructor-arg value="2" />
+        <constructor-arg value="25" />
+    </bean>
+
+</beans>

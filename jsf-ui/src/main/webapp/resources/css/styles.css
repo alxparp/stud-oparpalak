@@ -1,0 +1,33 @@
+.employeeTable {
+    border-collapse:collapse;
+    border:1px solid #000000;
+}
+
+.employeeTableHeader {
+    text-align:center;
+    background:none repeat scroll 0 0 #B5B5B5;
+    border-bottom:1px solid #000000;
+    padding:2px;
+}
+
+.employeeTableOddRow {
+    text-align:center;
+    background:none repeat scroll 0 0 #FFFFFF;
+}
+
+.employeeTableEvenRow {
+    text-align:center;
+    background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.search_component {
+    float: left;
+    margin-right: 20px;
+}
+
+
+/*add book*/
+.add_component {
+    float: right;
+}
+
